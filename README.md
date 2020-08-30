@@ -19,6 +19,7 @@
 6. You're done! The label should automatically change to the color that you set. It will stay that color, even after a page reload!
 
 ## A Brown Label!
+![How to create Brown Label](https://images.simplexshotz.tk/brownlabeledit.png)
 ![A Brown Label!](https://images.simplexshotz.tk/brownlabel.png)
 
 ## A quick note:
