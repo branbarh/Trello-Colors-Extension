@@ -20,4 +20,4 @@
 
 ## A quick note:
 
-To anyone not using the extension, the name will show up exactly how you entered it, and it will not have the custom color. Unfortunately, there's really no other way to store the color, aside from in the label's name, so there's not much I can do about it. Just have them install the extension too, if you really need to.
+To anyone not using the extension, the name will show up exactly how you entered it (with the color code in the title), and it will not have the custom color. Unfortunately, there's really no other way to store the color, aside from in the label's name, so there's not much I can do about it. Just have them install the extension too, if you really need to.
