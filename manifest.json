@@ -1,0 +1,17 @@
+{
+  "name": "Trello Colors",
+  "version": "1.0",
+  "description": "An extension that allows for more color options on Trello labels.",
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "permissions": [
+    "tabs",
+    "http://*/",
+    "https://*/"
+  ],
+  "manifest_version": 2
+}
