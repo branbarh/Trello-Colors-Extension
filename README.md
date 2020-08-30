@@ -19,7 +19,9 @@
 6. You're done! The label should automatically change to the color that you set. It will stay that color, even after a page reload!
 
 ## A Brown Label!
+
 ![How to create Brown Label](https://images.simplexshotz.tk/brownlabeledit.png)
+
 ![A Brown Label!](https://images.simplexshotz.tk/brownlabel.png)
 
 ## A quick note:
@@ -29,4 +31,5 @@ To anyone not using the extension, the name will show up exactly how you entered
 ## Another quick note:
 
 The colors won't show up properly unless the label is expanded (you can expand a label just by clicking on it). It should look like this:
+
 ![Example](https://images.simplexshotz.tk/brownlabelexample.png)
