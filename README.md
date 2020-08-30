@@ -2,11 +2,12 @@
 
 ## To install this extension, follow these steps:
 
-1. Download this repository.
-2. Head on over to "chrome://extensions".
-3. Enable Developer Mode by toggling the switch in the top right corner of the extensions page.
-4. Click the "LOAD UNPACKED" button in the top left corner of the extensions page, and select the unzipped folder that you downloaded in step 1.
-5. Head on over to Trello, and you're all set!
+1. Download this repository by clicking on the green button with a down arrow labeled "Code", then selecting "Download ZIP".
+2. Unzip the downloaded file.
+3. Head on over to "chrome://extensions".
+4. Enable Developer Mode by toggling the switch in the top right corner of the extensions page.
+5. Click the "LOAD UNPACKED" button in the top left corner of the extensions page, and select the unzipped folder that you downloaded in step 1.
+6. Head on over to Trello, and you're all set!
 
 ## How to use the extension:
 
