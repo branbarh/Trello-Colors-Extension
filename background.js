@@ -19,7 +19,7 @@ chrome.tabs.onUpdated.addListener(function() {
                     }
                   }        
                 }
-              }, 5000);
+              }, 0);
 
 		`
 	      });
