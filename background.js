@@ -8,6 +8,14 @@ chrome.tabs.onUpdated.addListener(function() {
             var labels = document.getElementsByClassName("card-label");
 
             for (var i = 0, len = labels.length, color; i < len; i++) {
+              if (labels[i].title.indexOf("#") === 0 && labels[i].title.indexOf(":") > 0) {
+                color = labels[i].title.split(":")[0];
+                labels[i].style.backgroundColor = color;
+
+                labels[i].title = labels[i].title.substring(color.length + 1);
+              }
+
+
               if (labels[i].innerText.indexOf("#") === 0 && labels[i].innerText.indexOf(":") > 0) {
                 color = labels[i].innerText.split(":")[0];
                 labels[i].style.backgroundColor = color;
