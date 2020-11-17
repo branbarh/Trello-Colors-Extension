@@ -28,8 +28,10 @@
 
 To anyone not using the extension, the name will show up exactly how you entered it (with the color code in the title), and it will not have the custom color. Unfortunately, there's really no other way to store the color, aside from in the label's name, so there's not much I can do about it. Just have them install the extension too, if you really need to.
 
-## Another quick note:
+~~## Another quick note:~~
 
-The colors won't show up properly unless the label is expanded (you can expand a label just by clicking on it). It should look like this:
+~~The colors won't show up properly unless the label is expanded (you can expand a label just by clicking on it). It should look like this:~~
+
+This has been fixed; kudos to Liam for realizing that the name of the label is also stored in the title attribute!
 
 ![Example](https://images.simplexshotz.tk/brownlabelexample.png)
