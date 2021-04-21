@@ -1,28 +1,28 @@
-
 chrome.tabs.onUpdated.addListener(function() {
-    chrome.tabs.query({"active": true, "lastFocusedWindow": true}, function(tabs) {
-      if (tabs[0].title.indexOf("Trello") !== -1) {
-	      chrome.tabs.executeScript(tabs[0].id, {
-            "code": `
+  chrome.tabs.query({"active": true, "lastFocusedWindow": true}, function(tabs) {
+    if (tabs[0].title.indexOf("Trello") !== -1) {
+      chrome.tabs.executeScript(tabs[0].id, {
+          "code": `
 
-              setInterval(function() {
-                var labels = document.querySelectorAll(".card-label[title*='#']");
+            setInterval(function() {
+              let labels = document.querySelectorAll(".card-label, .label-text");
+              let color;
 
-                for (var i = 0, len = labels.length, color; i < len; i++) {
-                  if (labels[i].title.indexOf(":") > 0) {
-                    color = labels[i].title.split(":")[0];
-                    labels[i].style.backgroundColor = color;
+              labels.forEach(label => {
+                if (label.title.indexOf(":") > 0)
+                  color = label.title.split(":")[0];
+                else if (label.innerText.indexOf(":") > 0)
+                  color = label.innerText.split(":")[0];
+                else
+                  return;
 
-                    labels[i].title = labels[i].title.substring(color.length + 1);
-                    if (labels[i].innerText != "") {
-                        labels[i].innerText = labels[i].innerText.substring(color.length + 1);                
-                    }
-                  }        
-                }
-              }, 0);
-
-		`
-	      });
-      }
-    });
+                label.style.backgroundColor = color;
+                label.title = label.title.substring(color.length + 1);
+                label.childNodes[0].nodeValue = label.innerText.substring(color.length + 1);
+              });
+            }, 50);
+  `
+      });
+    }
+  });
 });
