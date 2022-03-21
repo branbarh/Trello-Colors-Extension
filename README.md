@@ -1,5 +1,5 @@
-# Trello-Colors-Extension
-*This fork migrates the manifest.json to Manifest V3 in compliance with the Manifest V3 Transition Timeline.*
+# Trello-Colors-Extension || ***FORK WIP***
+*This fork migrates the extension to Manifest V3 in compliance with the Manifest V3 Transition Timeline.*
 
 [See blog on developer.chrome.com for more info.](https://developer.chrome.com/blog/mv2-transition/)
 
