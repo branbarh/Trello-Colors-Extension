@@ -65,6 +65,14 @@ function handleLabelInput() {
 
 }
 
+function cleanQuotes(str) {
+
+  let quoteChars = "«»".split("");
+  quoteChars.forEach(q => (str = str.split(q).join("")));
+
+  return str;
+}
+
 function handleLabels() {
 
   // Get all of the labels:
@@ -82,7 +90,10 @@ function handleLabels() {
   labels.forEach(label => {
 
     // Pull the label title from the aria text:
-    labelTitle = label.ariaLabel.split(", title: ")[1].slice(1, -1);
+    labelTitle = cleanQuotes(label.ariaLabel.split(": ")[2].slice(1, -1));
+
+    console.log(label);
+    console.log(labelTitle);
 
     // Add this label to the "checked" list of labels:
     label.classList.add("trelloColors_checked");
