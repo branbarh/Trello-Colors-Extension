@@ -27,6 +27,10 @@ function handleCSSRules() {
   styleSheet.insertRule(`label .js-labels-list-item[data-hidepseudo=true] { padding-left: 12px !important; }`);
   styleSheet.insertRule(`[data-hidepseudo=true] { animation: none !important; }`);
 
+  // Fix the new padding changes:
+  styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root { padding-top: 3px !important; padding-bottom: 4px !important; }`);
+  styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root:empty { padding-bottom: 0px !important; }`);
+
 }
 
 function handleLabelInput() {
