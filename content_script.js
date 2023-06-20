@@ -29,7 +29,7 @@ function handleCSSRules() {
 
   // Fix the new padding changes:
   styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root { padding-top: 3px !important; padding-bottom: 4px !important; }`);
-  styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root:empty { padding-bottom: 0px !important; }`);
+  styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root:empty { padding-top: 2px !important; padding-bottom: 0px !important; }`);
 
 }
 
