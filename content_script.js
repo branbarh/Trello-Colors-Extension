@@ -28,8 +28,8 @@ function handleCSSRules() {
   styleSheet.insertRule(`[data-hidepseudo=true] { animation: none !important; }`);
 
   // Fix the new padding changes:
-  styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root { padding-top: 3px !important; padding-bottom: 4px !important; }`);
-  styleSheet.insertRule(`.list-card-front-labels-container.js-list-card-front-labels-container .js-react-root:empty { padding-top: 2px !important; padding-bottom: 0px !important; }`);
+  styleSheet.insertRule(`div[data-testid=trello-card] > div > div:first-child { padding-top: 3px !important; padding-bottom: 4px !important; }`);
+  styleSheet.insertRule(`div[data-testid=trello-card] > div > div:first-child:empty { padding-top: 2px !important; padding-bottom: 0px !important; }`);
 
 }
 
@@ -80,7 +80,7 @@ function cleanQuotes(str) {
 function handleLabels() {
 
   // Get all of the labels:
-  let labels = [...document.querySelectorAll(".list-card-front-labels-container button:not(.trelloColors_checked)")];
+  let labels = [...document.querySelectorAll("div[data-testid=trello-card] > div > div:first-child button[data-testid]:not(.trelloColors_checked)")];
 
   // Get the labels on the back of the card, if any exist:
   if (document.querySelectorAll(".js-card-back-labels-container button:not(.trelloColors_checked):not([type])").length > 0)
@@ -95,9 +95,6 @@ function handleLabels() {
 
     // Pull the label title from the aria text:
     labelTitle = cleanQuotes(label.ariaLabel.split(": ")[2].slice(1, -1));
-
-    console.log(label);
-    console.log(labelTitle);
 
     // Add this label to the "checked" list of labels:
     label.classList.add("trelloColors_checked");
@@ -128,7 +125,7 @@ function handleLabels() {
 
 function updateLabelPreview(input) {
 
-  let label = document.querySelector("section.js-react-root div[data-test-id='card-label']");
+  let label = document.querySelector("section.js-react-root div[data-testid='card-label']");
 
   // Get the color and update the label preview:
   if (input.value.indexOf("#") !== 0 || input.value.indexOf(":") < input.value.indexOf("#")) {

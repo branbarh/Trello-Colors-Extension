@@ -1,6 +1,6 @@
 # Trello-Colors-Extension
 
-*This extension was updated to support the new labels update for Trello. It has been completely rewritten with a focus on performance and features—see the features section for more infromation.*
+*Trello changed a few things on their end which broke the old version of the extension; the extension has been updated to reflect these changes. Reinstall the extension and it should work again! I've also fixed the live preview when editing labels, as Trello also updated this.*
 
 ## To install this extension, follow these steps:
 
