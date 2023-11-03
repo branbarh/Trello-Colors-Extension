@@ -80,11 +80,11 @@ function cleanQuotes(str) {
 function handleLabels() {
 
   // Get all of the labels:
-  let labels = [...document.querySelectorAll("div[data-testid=trello-card] > div > div:first-child button[data-testid]:not(.trelloColors_checked)")];
+  let labels = [...document.querySelectorAll("div[data-testid=trello-card] > div > div:first-child span[data-testid]:not(.trelloColors_checked)")];
 
   // Get the labels on the back of the card, if any exist:
-  if (document.querySelectorAll(".js-card-back-labels-container button:not(.trelloColors_checked):not([type])").length > 0)
-    labels.push(...document.querySelectorAll(".js-card-back-labels-container button:not(.trelloColors_checked):not([type])"));
+  if (document.querySelectorAll(".js-card-back-labels-container div > span:not(.trelloColors_checked):not([type])").length > 0)
+    labels.push(...document.querySelectorAll(".js-card-back-labels-container div > span:not(.trelloColors_checked):not([type])"));
 
   if (document.querySelectorAll("label .js-labels-list-item:not(.trelloColors_checked)").length > 0)
     labels.push(...document.querySelectorAll("label .js-labels-list-item:not(.trelloColors_checked)"));
@@ -125,7 +125,8 @@ function handleLabels() {
 
 function updateLabelPreview(input) {
 
-  let label = document.querySelector("section.js-react-root div[data-testid='card-label']");
+  // Get the container used for the label preview:
+  let label = document.querySelector("section.js-react-root span[data-testid='card-label']");
 
   // Get the color and update the label preview:
   if (input.value.indexOf("#") !== 0 || input.value.indexOf(":") < input.value.indexOf("#")) {
