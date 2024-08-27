@@ -1,3 +1,13 @@
+// ==UserScript==
+// @name         Trello Colors
+// @namespace    http://tampermonkey.net/
+// @version      2.4
+// @description  An extension that allows for more color options on Trello labels.
+// @author       branbarh
+// @match        *://*.trello.com/*
+// @grant        none
+// @license      MIT
+// ==/UserScript==
 
 //  ======================================= MAIN UPDATE LOOP =======================================
 
