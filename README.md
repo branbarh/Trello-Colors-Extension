@@ -9,13 +9,23 @@
 3. Head on over to "chrome://extensions".
 4. Enable Developer Mode by toggling the switch in the top right corner of the extensions page.
 5. Click the "LOAD UNPACKED" button in the top left corner of the extensions page, and select the unzipped folder that you downloaded in step 1.
-6. Head on over to Trello, and you're all set!
+6. Head on over to Trello (or reload the page), and you're all set!
+
+### OR
+
+1. Install [TamperMonkey](https://www.tampermonkey.net).
+2. Install the extension as a userscript from [GreasyFork](https://greasyfork.org/en/scripts/505507-trello-colors).
+3. Head on over to Trello (or reload the page), and you're all set!
 
 ## To update this extension from an older version, follow these steps:
 
 1. Head on over to "chrome://extensions".
 2. Find the older version of Trello Colors, and click on the "Remove" button to delete it.
 3. Install the new version, following the steps outlined above.
+
+### OR
+
+1. Update the userscript from [GreasyFork](https://greasyfork.org/en/scripts/505507-trello-colors).
 
 ## How to use the extension:
 
