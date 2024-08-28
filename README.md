@@ -1,6 +1,6 @@
 # Trello-Colors-Extension
 
-*Trello changed a few things on their end which broke the old version of the extension; the extension has been updated to reflect these changes. Reinstall the extension and it should work again! I've also fixed the live preview when editing labels, as Trello also updated this.*
+*Version 3.0 is out! Check the changelog at the bottom of the README for more information. Reinstall the extension to recieve the new updates!*
 
 ## To install this extension, follow these steps:
 
@@ -40,9 +40,20 @@
 
 To anyone not using the extension, the name will show up exactly how you entered it (with the color code in the title), and it will not have the custom color. Unfortunately, there's really no other way to store the color, aside from in the label's name, so there's not much I can do about it. Have them install the extension too, if you really need to.
 
+## Features (v3):
+
+The latest version of this extension comes with several new features!
+
+1. The extension can now be installed as a userscript (since v2.4)! Install it on [GreasyFork](https://greasyfork.org/en/scripts/505507-trello-colors).
+3. Labels with custom colors will now also show customized tooltips on hover, displaying the custom color (in hex) and the correct title.
+2. Hovering a label with a custom color will now change its color, in line with the default label colors.
+4. Labels with custom colors now animate properly when showing or hiding the text on the front of cards.
+5. Colorblind cues now display properly on labels with custom colors.
+6. The white/black text color threshold has been adjusted to prefer white, making label text more readable in most cases.
+
 ## Features (v2):
 
-The latest version of this extension comes with some new features!
+Trello Colors v2 introduced quite a few new features:
 
 1. When editing a label, the color on the label will update in real time, so you don't have to guess what the label will look like when inputting a color.
 2. Darker colored labels will now show up with white text, making them much more readable. 3 character hex codes are also supported with this feature.
