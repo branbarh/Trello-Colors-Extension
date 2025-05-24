@@ -1,6 +1,6 @@
 # Trello-Colors-Extension
 
-*Version 3.0 is out! Check the changelog at the bottom of the README for more information. Reinstall the extension to recieve the new updates!*
+*Version 3.1 is out! Check the changelog at the bottom of the README for more information. Reinstall the extension to recieve the new updates!*
 
 ## To install this extension, follow these steps:
 
@@ -40,9 +40,19 @@
 
 To anyone not using the extension, the name will show up exactly how you entered it (with the color code in the title), and it will not have the custom color. Unfortunately, there's really no other way to store the color, aside from in the label's name, so there's not much I can do about it. Have them install the extension too, if you really need to.
 
+## Features (v3.1):
+
+The latest version of this extension comes with several new features and bug fixes!
+
+1. Spaces are now ignored when writing hex codes (e.g., "#800080: Magenta" is now a valid label with a custom color).
+2. Custom colors show properly on the back of cards once more.
+3. Custom colors show properly in the label selector once more.
+4. The label editor updates in real time once more.
+5. The text color of a label is now properly reset when removing a custom color.
+
 ## Features (v3):
 
-The latest version of this extension comes with several new features!
+Trello Colors v3 introduced quite a few new features:
 
 1. The extension can now be installed as a userscript (since v2.4)! Install it on [GreasyFork](https://greasyfork.org/en/scripts/505507-trello-colors).
 3. Labels with custom colors will now also show customized tooltips on hover, displaying the custom color (in hex) and the correct title.

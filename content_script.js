@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Colors
 // @namespace    http://tampermonkey.net/
-// @version      3.0
+// @version      3.1
 // @description  A userscript that allows for unlimited color options on Trello labels.
 // @author       branbarh
 // @match        *://*.trello.com/*
@@ -57,7 +57,7 @@ function handleLabels() {
     // Card quick-edit front labels (i.e., the labels shown when you right click a card):
     ...document.querySelectorAll("div[data-testid=quick-card-editor-card-front] > div > div:first-child span[data-testid]:not(.trelloColors_checked)"),
     // Card back labels (i.e., the labels shown on the back of each card when you click to open it, under the "Labels" section):
-    ...document.querySelectorAll(".js-card-back-labels-container div > span[data-testid=card-label]:not(.trelloColors_checked):not([type])"),
+    ...document.querySelectorAll("div[data-testid=card-back-labels-container] > span[data-testid=card-label]:not(.trelloColors_checked):not([type])"),
     // Popover label selector and suggested labels (i.e., the labels shown in the popover menu that appears when you chose to select labels for a card):
     ...document.querySelectorAll("[data-testid=labels-popover-labels-screen] [data-testid=card-label]:not(.trelloColors_checked)")
   ];
@@ -66,7 +66,7 @@ function handleLabels() {
   labels.forEach(label => {
 
     // Get the label title from the aria text:
-    const labelTitle = cleanQuotes(label.ariaLabel?.split(": ")[2].slice(1, -1));
+    const labelTitle = cleanQuotes(label.ariaLabel?.split("title: ")[1].slice(1, -1));
 
     // Mark this label as checked:
     label.classList.add("trelloColors_checked");
@@ -76,20 +76,20 @@ function handleLabels() {
       return console.error("Invalid label. Please open an issue on GitHub (https://github.com/branbarh/Trello-Colors-Extension/issues) and outline the steps to reproduce this error.", label);
 
     // Return if the label does not have a custom color associated with it:
-    if (labelTitle.indexOf("#") !== 0 || labelTitle.indexOf(":") < labelTitle.indexOf("#")) {
+    if (labelTitle.trim().indexOf("#") !== 0 || labelTitle.indexOf(":") < labelTitle.indexOf("#")) {
       label.style.removeProperty("background-color");
       label.style.removeProperty("color");
       return;
     }
 
     // Get the custom color associated with the label:
-    const hex = labelTitle.split(":")[0];
+    const hex = labelTitle.split(":")[0].split(" ").join("");
     const shadedHex = hexToMouseoverColor(hex);
 
     // Determine if the label has its text showing:
-    const isBackLabel = label?.parentNode?.parentNode?.parentNode?.parentNode?.classList?.contains("js-card-back-labels-container");
-    const isPopoverLabel = label?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.dataset?.testid === "labels-popover-labels-screen";
-    const isSuggestedLabel = label?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.parentNode?.dataset?.testid === "labels-popover-suggested-labels";
+    const isBackLabel = label?.parentNode?.dataset?.testid === "card-back-labels-container";
+    const isPopoverLabel = label?.parentNode?.parentNode?.parentNode.dataset.testid === "clickable-checkbox";
+    const isSuggestedLabel = label?.parentNode?.parentNode?.parentNode.dataset.testid === "clickable-checkbox"; // Currently, popover and suggested labels are basically identical. This has not always been the case.
     const isFrontLabelTextShowing = document.getElementById("trello-root").classList.contains("body-card-label-text") || document.getElementById("trello-root").classList.contains("body-card-label-text-on");
     
     // Back labels, popover labels, and suggested labels always have their text showing; front labels will only have their text showing when expanded (i.e., when isFrontLabelTextShowing is true):
@@ -101,7 +101,7 @@ function handleLabels() {
     // Update the relevant label styles and data:
     label.style.backgroundColor = hex;
     label.style.color = isLabelTextShowing ? labelTextColor : "#00000000";
-    label.innerText = labelTitle.substring(hex.length + 1);
+    label.innerText = labelTitle.split(":").slice(1).join(":");
 
     // Update the "--label-text-color" CSS variable to color match the colorblind pattern with the label's inner text:
     label.style.setProperty("--label-text-color", labelTextColor);
@@ -126,7 +126,7 @@ function handleTooltips() {
     return;
 
   // Get the label title from the inner text:
-  const tooltipTitle = cleanQuotes(tooltip.innerText?.split(": ")[2].slice(1, -1));
+  const tooltipTitle = cleanQuotes(tooltip.innerText?.split("title: ")[1].slice(1, -1));
 
   // Mark this tooltip as checked:
   tooltip.classList.add("trelloColors_checked");
@@ -136,12 +136,12 @@ function handleTooltips() {
     return console.error("Invalid tooltip. Please open an issue on GitHub (https://github.com/branbarh/Trello-Colors-Extension/issues) and outline the steps to reproduce this error.", tooltip);
 
   // Return if the tooltip does not have a custom color associated with it:
-  if (tooltipTitle.indexOf("#") !== 0 || tooltipTitle.indexOf(":") < tooltipTitle.indexOf("#"))
+  if (tooltipTitle.trim().indexOf("#") !== 0 || tooltipTitle.indexOf(":") < tooltipTitle.indexOf("#"))
     return;
 
   // Update the tooltip to hide the custom color:
-  const hex = tooltipTitle.split(":")[0];
-  const title = tooltipTitle.substring(hex.length + 1);
+  const hex = tooltipTitle.split(":")[0].split(" ").join("");
+  const title = tooltipTitle.split(":").slice(1).join(":").trim();
   tooltip.innerText = `Custom color: ${hex}, title: “${title}”`;
 
 }
@@ -149,10 +149,10 @@ function handleTooltips() {
 function handleLabelInput() {
 
   // Get the label input and the save button:
-  const input = document.querySelector("section.js-react-root > div > div > input.nch-textfield__input:not(.trelloColors_eventAdded)");
-  const saveButton = document.querySelector("section.js-react-root > div > div[class] > button");
+  const input = document.querySelector("[data-testid=labels-popover-edit-label-screen] input:not(.trelloColors_eventAdded)");
+  const saveButton = [...document.querySelectorAll("[data-testid=labels-popover-edit-label-screen] button")].at(-2);
 
-  // Return if there is no label input currently being displayed to the user:
+  // Return if there is no label input currently being displayed to the user, or if the event handlers have already been added:
   if (!input)
     return;
 
@@ -177,10 +177,10 @@ function handleLabelInput() {
 function updateLabelPreview(input) {
 
   // Get the label preview element:
-  const label = document.querySelector("section.js-react-root span[data-testid='card-label']");
+  const label = document.querySelector("[data-testid=labels-popover-edit-label-screen] [data-testid=card-label]");
 
   // If there is no custom color, remove any custom, previously set properties:
-  if (input.value.indexOf("#") !== 0 || input.value.indexOf(":") < input.value.indexOf("#")) {
+  if (input.value.trim().indexOf("#") !== 0 || input.value.indexOf(":") < input.value.indexOf("#")) {
     label.style.removeProperty("background-color");
     label.style.removeProperty("color");
     label.innerText = input.value;
@@ -188,12 +188,12 @@ function updateLabelPreview(input) {
   }
 
   // Otherwise, a custom color has been provided; update the label preview to display the custom color:
-  const hex = input.value.split(":")[0];
+  const hex = input.value.split(":")[0].split(" ").join("");
 
   // Update the label preview properties:
   label.style.backgroundColor = hex;
   label.style.color = hexToLabelTextColor(hex);
-  label.innerText = input.value.substring(hex.length + 1);
+  label.innerText = input.value.split(":").slice(1).join(":");
 
 }
 
@@ -350,6 +350,7 @@ function uncheckAllLabels() {
       label.classList.remove("trelloColors_checked");
       delete label.dataset.defaultcolor;
       delete label.dataset.shadedcolor;
+      label.style.removeProperty("--label-text-color");
       label.removeEventListener("mouseover", mouseoverLabel);
       label.removeEventListener("mouseout", mouseoutLabel);
     });

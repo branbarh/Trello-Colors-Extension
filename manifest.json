@@ -1,6 +1,6 @@
 {
   "name": "Trello Colors",
-  "version": "3.0",
+  "version": "3.1",
   "description": "An extension that allows for unlimited color options on Trello labels.",
   "host_permissions": [
     "http://*/",
