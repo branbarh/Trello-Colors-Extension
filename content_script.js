@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Colors
 // @namespace    http://tampermonkey.net/
-// @version      3.1
+// @version      3.1.1
 // @description  A userscript that allows for unlimited color options on Trello labels.
 // @author       branbarh
 // @match        *://*.trello.com/*
@@ -66,7 +66,7 @@ function handleLabels() {
   labels.forEach(label => {
 
     // Get the label title from the aria text:
-    const labelTitle = cleanQuotes(label.ariaLabel?.split("title: ")[1].slice(1, -1));
+    const labelTitle = cleanQuotes(label.ariaLabel?.split(": ").slice(2).join(": ").slice(1, -1));
 
     // Mark this label as checked:
     label.classList.add("trelloColors_checked");
@@ -126,7 +126,7 @@ function handleTooltips() {
     return;
 
   // Get the label title from the inner text:
-  const tooltipTitle = cleanQuotes(tooltip.innerText?.split("title: ")[1].slice(1, -1));
+  const tooltipTitle = cleanQuotes(tooltip.innerText?.split(": ").slice(2).join(": ").slice(1, -1));
 
   // Mark this tooltip as checked:
   tooltip.classList.add("trelloColors_checked");

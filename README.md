@@ -1,6 +1,6 @@
 # Trello-Colors-Extension
 
-*Version 3.1 is out! Check the changelog at the bottom of the README for more information. Reinstall the extension to recieve the new updates!*
+*Version 3.1.1 is out! Check the changelog at the bottom of the README for more information. Reinstall the extension to recieve the new updates!*
 
 ## To install this extension, follow these steps:
 
@@ -49,6 +49,7 @@ The latest version of this extension comes with several new features and bug fix
 3. Custom colors show properly in the label selector once more.
 4. The label editor updates in real time once more.
 5. The text color of a label is now properly reset when removing a custom color.
+6. As of v3.1.1, the extension should now work properly in other languages.
 
 ## Features (v3):
 
