@@ -27,6 +27,9 @@ If you are not using the latest version of the extension, please update to the l
 **Browser**
 Please include your browser and its version (e.g., "Chrome 136.0.7103.114", etc.).
 
+**Language**
+Please include the language you use on Trello.
+
 **Steps To Reproduce**
 Please include the steps to reproduce the issue (if applicable). Use the following format:
 1. I clicked on...
