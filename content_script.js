@@ -53,11 +53,11 @@ function handleLabels() {
   // Get all unchecked labels:
   const labels = [
     // Card front labels (i.e., the labels shown on the front of each card):
-    ...document.querySelectorAll("div[data-testid=trello-card] > div > div:first-child span[data-testid]:not(.trelloColors_checked)"),
+    ...document.querySelectorAll("div[data-testid=trello-card] > div > div:first-child button[data-testid]:not(.trelloColors_checked)"),
     // Card quick-edit front labels (i.e., the labels shown when you right click a card):
-    ...document.querySelectorAll("div[data-testid=quick-card-editor-card-front] > div > div:first-child span[data-testid]:not(.trelloColors_checked)"),
+    ...document.querySelectorAll("div[data-testid=quick-card-editor-card-front] > div > div:first-child button[data-testid]:not(.trelloColors_checked)"),
     // Card back labels (i.e., the labels shown on the back of each card when you click to open it, under the "Labels" section):
-    ...document.querySelectorAll("div[data-testid=card-back-labels-container] > span[data-testid=card-label]:not(.trelloColors_checked):not([type])"),
+    ...document.querySelectorAll("div[data-testid=card-back-labels-container] > button[data-testid=card-label]:not(.trelloColors_checked)"),
     // Popover label selector and suggested labels (i.e., the labels shown in the popover menu that appears when you chose to select labels for a card):
     ...document.querySelectorAll("[data-testid=labels-popover-labels-screen] [data-testid=card-label]:not(.trelloColors_checked)")
   ];
@@ -66,7 +66,7 @@ function handleLabels() {
   labels.forEach(label => {
 
     // Get the label title from the aria text:
-    const labelTitle = cleanQuotes(label.ariaLabel?.split(": ").slice(2).join(": ").slice(1, -1));
+    const labelTitle = cleanQuotes(label.ariaLabel ? label.ariaLabel.split(": ").slice(2).join(": ").slice(1, -1) : label.innerText);
 
     // Mark this label as checked:
     label.classList.add("trelloColors_checked");
